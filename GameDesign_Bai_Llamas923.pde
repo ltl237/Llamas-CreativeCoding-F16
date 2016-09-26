@@ -21,6 +21,7 @@ void setup(){
   background(0,0,0);
   String url = "http://pix.iemoji.com/images/emoji/apple/ios-9/256/collision-symbol.png";
   online = loadImage(url, "png");
+  online.resize(0,500);
   color[] colarray = new color[3];
   colarray[0] = color(0,0,255);
   colarray[1] = color(255,0,0);
