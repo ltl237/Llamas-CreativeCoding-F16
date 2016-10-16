@@ -3,10 +3,9 @@ var minCounter = 0;
 var redHue = 100;
 var blueHue = 100;
 var blurAmt = 0.5;
-var transX = 500;
-var transY = 200;
-// var img;
-
+var transX = 0;
+var transY = 0;
+var circSize = 90;
 // function preload(){
 // 	img = loadImage("assets/sun.jpg");
 // }
@@ -41,7 +40,7 @@ function makeDude(){
 	// translate(transX,transY);
 
 	background(200);
-	ellipse(width/2,height/2,90,90);
+	ellipse(width/2,height/2,circSize,circSize);
 
 }
 
@@ -49,31 +48,47 @@ function keyPressed(){
 	// translate(transX,transY);
 	fill(redHue,10,blueHue);
 	theScale += 0.07;
-	scale(theScale,theScale);
-	makeDude();
+	push();
+		// scale(theScale,theScale);
+		translate(transX,transY);
+		makeDude();
+	pop();
+	transX += 20;
+	transY -= 30;
 	minCounter--;
 	console.log(minCounter);
 	filter(BLUR,blurAmt);
 	redHue += 25;
 	blueHue -= 25;
 	blurAmt += 0.5;
+	circSize += 20;
+	console.log(circSize);
 }
 
 function mouseClicked(){
+	// rotate(PI); 
+	// translate(transX,transY);
+	//^both don't work
+	console.log(circSize);
 	fill(redHue,10,blueHue);
 	theScale -= 0.07;
-	scale(theScale,theScale);
-	rotate(PI);
-	makeDude();
+	push();
+		// scale(theScale,theScale);
+		translate(transX,transY);
+		makeDude();
+	pop();
+	transX -= 20;
+	transY += 30;
 	minCounter++;
 	console.log(minCounter);
 	filter(BLUR,blurAmt);
 	blueHue += 25;
 	redHue -= 25;
 	blurAmt -= 0.5;
-	line(400,340,400,400);
-	line(400,400,430,430);
-	line(400,400,370,430);
+	circSize -= 20;
+	// line(400,340,400,400);
+	// line(400,400,430,430);
+	// line(400,400,370,430);
 }
 function drawLines(){
 	line(688,555,777,530);
