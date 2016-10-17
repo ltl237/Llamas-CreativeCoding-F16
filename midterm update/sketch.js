@@ -38,11 +38,15 @@ function preload(){
 	arena = loadImage("arena.jpg");
 	ssbomb = loadImage("ssjbomb.png");
 	aura = loadImage("aura.png");
+	damaged = loadImage("gokudamaged.png")
+	// mySound = loadSound('ssj3.mp3'); next steps
 }
 
 
 function setup(){
 	createCanvas(1000,650);
+	// mySound.setVolume(0.1);
+	// mySound.play();
 	makeBomb();
 	
 	background(255);
@@ -50,8 +54,8 @@ function setup(){
 
 	image(arena,0,0,width,height);
 	image(SSGoku, 300, 300, 350, 390);
-	textSize(20);
-	text("Press key to charge Spirit Bomb!",300,290);
+	textSize(28);
+	text("Press key to charge Spirit Bomb!",310,290);
 
 }
 
@@ -62,12 +66,25 @@ function draw(){
 		image(frieza, badX +420, badY - 30, 200, 220);
 		image(cell, badX+400, badY+80, 200, 250);
 		image(janemba, badX+440, badY, 200, 250);
+		textSize(28);
+		text("You've defeated the enemies!",340,290);
 		for(var i = 0; i < 50; i++){
 			translate(transX,transY);
 			ellipse(200, 200, 170, 170);
 			transX += 1;
 			transY += 1;
 		}
+		
+	}
+
+	if(clickCount <= -4){
+		image(arena,0,0,width,height);
+		image(damaged, 300,300,250,300);
+		textSize(28);
+		text("You have been defeated!", 340,290);
+		image(frieza, badX +10, badY - 360, 300, 320);
+		image(cell, badX+480, badY-30, 400, 450);
+		image(janemba, badX-140, badY-100, 300, 350);
 	}
 
 }
