@@ -39,14 +39,21 @@ function preload(){
 	ssbomb = loadImage("ssjbomb.png");
 	aura = loadImage("aura.png");
 	damaged = loadImage("gokudamaged.png")
-	// mySound = loadSound('ssj3.mp3'); next steps
+	//sounds
+	song = loadSound('ssj3.mp3'); 
+	powerUp = loadSound('powerUp.mp3'); 
+	giveEnergy = loadSound('giveEnergy.mp3');
+	spiritBomb = loadSound('spiritBomb.mp3');
 }
 
 
 function setup(){
 	createCanvas(1000,650);
-	// mySound.setVolume(0.1);
-	// mySound.play();
+
+	song.setVolume(0.1);
+	song.play();
+	giveEnergy.setVolume(0.1);
+	giveEnergy.play();
 	makeBomb();
 	
 	background(255);
@@ -61,6 +68,7 @@ function setup(){
 
 function draw(){	
 	if(clickCount >= 12){
+		
 		image(arena,0,0,width,height);
 		image(ssbomb,0,0,350,390);
 		image(frieza, badX +420, badY - 30, 200, 220);
@@ -74,7 +82,9 @@ function draw(){
 			transX += 1;
 			transY += 1;
 		}
-		
+	}
+	if(clickCount == 11){
+		launchBomb();
 	}
 
 	if(clickCount <= -4){
@@ -87,6 +97,10 @@ function draw(){
 		image(janemba, badX-140, badY-100, 300, 350);
 	}
 
+}
+function launchBomb(){
+	spiritBomb.setVolume(0.1);
+	spiritBomb.play();
 }
 function characters(){
 	image(frieza, badX - 120, badY - 30, 200, 220);
@@ -113,6 +127,8 @@ function makeAura(){
 		translate(0,0);
 		image(aura,imgX,imgY,aX, aY);
 	pop();
+	powerUp.setVolume(0.5);
+	powerUp.play();
 }
 
 function keyPressed(){
