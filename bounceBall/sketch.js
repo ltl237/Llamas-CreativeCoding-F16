@@ -15,12 +15,7 @@ function preload() {
 }
 function draw() {
 
-	//distance from center of the screen
-	// var d = dist(windowWidth/2, windowHeight/2, mouseX, mouseY);
-
-  	// fill (random(200, 250), random(200, 250), random(200, 250));
-
-  	//bouncing horizontally
+	
 	makeCircle();
 	x = x + xspeed;
   	
