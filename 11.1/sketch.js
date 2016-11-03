@@ -1,49 +1,52 @@
-// var x;
-// var y;
-var theRect;
-var squareArray = [];
+var ballArray = [];
 
 function setup(){
-  createCanvas(600,600);
-  // theRect = new Box(width/3, height/2, 30);
-  background(200);
-
-  squareArray[0] = new Box(width/3, height/2, 30);
-  squareArray[1] = new Box(width/2, height/2, 60);
-}
-
-function draw(){
+	createCanvas(550,550);
+	for(var i = 0; i < 5; i++){
+		ballArray[i] = new Ball(random(0,width),random(0,height),3);
+	}
 	background(200);
-
-	for(var i = 0; i < squareArray.length; i++){
-
-		squareArray[i].create();
-		squareArray[i].animate();
-	}
-
 }
 
-
-function Box(_x, _y, nSize){
-	this.x = _x;
-	this.y = _y;
-	this.size = nSize;
-	this.step = 2;
-	this.minSize = nSize - 10; //20
-	this.maxSize = nSize + 10; //70
-
-	this.create = function(){
-		rect(this.x,this.y,this.size,this.size);
+function draw() {
+	background(200);
+	for(var i = 0; i < ballArray.length; i++){
+		// fill(random(1,255));
+		ballArray[i].display();
+		ballArray[i].animate();
 	}
+}
+
+function mouseClicked(){
+	var anotherBall = new Ball(mouseX, mouseY, random(1,18));
+	ballArray.push(anotherBall);
+}
+
+function keyPressed(){
+	var keyBall = new Ball(mouseX, mouseY, random(1,28));
+	ballArray.push(keyBall);
+}
+
+function Ball(x,y,velocity){
+	this.x = x;
+	this.y = y;
+	this.vel = velocity;
+
 	this.animate = function(){
-		// this.size += this.step;
-		if(this.size < this.minSize || this.size > this.maxSize){
-			this.size += this.step;
-			this.step = this.step *-1;
-		}
-		else{
-			this.size += this.step;
-		}
 
+		this.x += this.vel;
+		if(this.x > width || this.x < 0){
+			this.vel = -this.vel;
+		}
+		this.y += this.vel;
+		if(this.y > width || this.y < 0){
+			this.vel = -this.vel;
+		}
 	}
-};
+
+	this.display = function(){
+		ellipse(this.x,this.y, 30,30);
+	}
+
+
+}
