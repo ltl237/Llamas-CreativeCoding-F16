@@ -56,8 +56,8 @@ function mouseClicked(){
 function Ball(x,y,velocity){
 	this.x = x;
 	this.y = y;
-	this.velX = random(3,7);
-	this.velY = random(2,5);
+	this.velX = random(6,10);
+	this.velY = random(4,9);
 	// this.counter = 0;
 	this.animate = function(){
 

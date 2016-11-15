@@ -1,4 +1,5 @@
 var shapeArr = [];
+var circles = [];
 
 function setup(){
 	createCanvas(600,600);
@@ -14,7 +15,7 @@ function setup(){
   	shapeArr[4] = new Shape(342,298,5);
   	shapeArr[5] = new Shape(422,298,5);
   	shapeArr[6] = new Shape(500,298,5);
-
+  	circles[0] = new Ellipse(random(0,200),random(0,200),5);
 }
 
 function preload(){
@@ -28,12 +29,18 @@ function draw(){
 	image(piano,0,0,width,height);
 	for(var i = 0; i < shapeArr.length; i++){
 		shapeArr[i].rectangle();
+		// shapeArr[i].ball();
+	}
+	for(var i = 0; i < circles.length; i++){
+		circles[i].display();
 	}
 	if(mouseIsPressed){
 		if(mouseX > 24 && mouseX < 105){
 			guitar1.setVolume(0.1);
 			guitar1.play();
 			shapeArr[0].animateY();
+			shapeArr[0].animateBall();
+			circles[0].display();
 		}
 		if(mouseX > 105 && mouseX < 183){
 			guitar2.setVolume(0.1);
@@ -78,13 +85,6 @@ function Shape(sx,sy,velocity){
 	this.y = sy;
 	this.vel = velocity;
 
-	// this.animateX = function(){
-	// 	this.x += this.vel;
-	// 	if(this.x > 550 || this.x < 100){
-	// 		this.vel = -this.vel;
-	// 	}
-	// }
-
 	this.animateY = function(){
 		
 		for(var i = 0; i < 10; i++){
@@ -95,21 +95,43 @@ function Shape(sx,sy,velocity){
 		}
 	}
 
+	// this.animateBall = function(){
+	// 	this.vel = 3;
+	// 	for(var i = 0; i < 10; i++){
+	// 		this.y += this.vel;
+	// 		this.x += this.vel;
+	// 		if(this.y > 550 || this.y <= 0){
+	// 			this.vel = -this.vel;
+	// 		}
+	// 		if(this.x > 550 || this.x < 298){
+	// 			this.vel = -this.vel;
+	// 		}
+	// 	}
+	// }
 
 	this.rectangle = function(){
 		fill(0,0,255);
 		for(var i = 0; i < 7; i++){
 			rect(this.x,this.y,70,130);
-			// rect(105,298,70,130);
-			// rect(183,298,70,130);
-			// rect(263,298,70,130);
-			// rect(342,298,70,130);
-			// rect(422,298,70,130);
-			// rect(500,298,70,130);
-
-			// this.rx += 5;
 		}	
+	}
 
+	this.ball = function(){
+		fill(200);
+		for(var i = 0; i <=7; i++){
+			ellipse(this.x,this.y,20,20);
+		}
 	}
 }
 
+function Ellipse(ex,ey,veloc){
+	this.x = ex;
+	this.y = ey;
+	this.vel = veloc;
+
+	this.display = function(){
+		for(var i = 0; i < 5; i++){
+			ellipse(this.x,this.y,20,20);
+		}
+	}
+} 
