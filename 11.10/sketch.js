@@ -11,9 +11,11 @@ function setup(){
 	// 	ballArray[i] = new Ball(random(0,width),random(0,height),3);
 	// }
 	back();
+
 	// background(200);
 }
 function back(){
+
 	push();
 		fill(200);
 		rect(0,0,width,height);
@@ -24,6 +26,8 @@ function back(){
 		stroke(255,0,0);
 		rect(30,190,70,150);
 		rect(700,190,70,150);
+		textSize(32);
+	text("Press your mouse to create an air hockey puck!", 70, 100);
 	pop();
 }
 function draw() {
