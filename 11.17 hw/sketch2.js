@@ -13,6 +13,7 @@ var index = 0;
 var imageObj;
 var temperature;
 var cloudNumber;
+var mouseCounter =0;
 function preload(){
 	//load JSON formatted data from URL
 	var url = "http://api.openweathermap.org/data/2.5/weather?q=New%20York,ny&appid=89309063680894bde99f0b41e0e6ccbc";
@@ -57,12 +58,16 @@ function draw(){
 
 function mouseClicked(){
 	index++;
+	mouseCounter++;
 	imageObj.drawCloud();
 	url = baseUrl + "q=" + strCities[index] + "&appid=" + APIkey;
 
 	myData = loadJSON(url, gotData);
 	if(index > 3){
 		index = 0;
+	}
+	if(mouseCounter >= 7){
+		image(rain,20,20,width,height);
 	}
 	// console.log(temperature/2);
 }
