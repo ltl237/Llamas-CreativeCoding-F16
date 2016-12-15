@@ -35,14 +35,6 @@ function setup() {
 	textSize(32);
 	text("Change me into a headline from NYTimes!", 50,50);
 }
-
-function gotData(myData){
-
-	globalData = myData;
-	console.log(globalData);
-
-}
-
 function getVal(){
 
 	myInputValue = input.value();
@@ -52,6 +44,14 @@ function getVal(){
 	background(255);
 
 }
+
+function gotData(myData){
+
+	globalData = myData;
+	console.log(globalData);
+
+}
+
 
 function draw() {
 	textSize(20);

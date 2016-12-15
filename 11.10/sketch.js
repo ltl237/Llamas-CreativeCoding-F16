@@ -11,6 +11,7 @@ function setup(){
 	// 	ballArray[i] = new Ball(random(0,width),random(0,height),3);
 	// }
 	back();
+	text("Press your mouse to create an air hockey puck!", 70, 100);
 
 	// background(200);
 }
@@ -27,11 +28,13 @@ function back(){
 		rect(30,190,70,150);
 		rect(700,190,70,150);
 		textSize(32);
-	text("Press your mouse to create an air hockey puck!", 70, 100);
 	pop();
 }
 function draw() {
 	back();
+	if(counter == 5 || counterRight == 5) {
+		background(200);
+	}
 	for(var i = 0; i < ballArray.length; i++){
 		// fill(random(1,255));
 		ballArray[i].display();
